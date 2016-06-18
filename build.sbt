@@ -19,3 +19,4 @@ lazy val root = Project(
   settings = prjSettings
 ).dependsOn(chisel
 ).aggregate(chisel)
+
