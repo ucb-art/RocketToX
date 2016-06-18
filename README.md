@@ -292,6 +292,8 @@ val bmarks = new BenchmarkTestSuite("basic", "$(RISCV)/riscv64-unknown-elf/share
 
 Then go into the **vsim** directory from top and run `make output/*benchmarkName*.riscv.vpd`. Note that the name should match with what you named your benchmark. 
 
+> Note: If your tests failed, don't fret just yet. There are sometimes weird bugs in Rocket. Assuming this patch hasn't been upstreamed (as of 6/18/16), go into **rocket-chip/junctions** and `git cherry-pick e414fa15764b2c7b59c3318e48c44a4d7ab363bf`. Then go back to the **vsim** directory and run again.
+
 If you want to look at your waveforms to debug things, try ` dve -full64 -vpd output/*benchmarkName*.riscv.vpd`
 
 > Don't forget to git add all of your changes!
