@@ -128,11 +128,13 @@ git push origin master
 Adding Your Accelerator to Rocket
 ===================
 
-Open **rocket-chip/.gitmodules** and add:
+Add your accelerator as a submodule in **rocket-chip** via `git submodule add *url* *name*`. If/when you update Accelerator X from the outside, you can get the latest version in your Accelerator X + Rocket project via:
 
 ```
-[submodule "*your-accelerator-name*"]
-        path = *your-accelerator-name*
-        url = *your-accelerator-git-url*
+cd *name*
+git pull
+cd ..
+git add *name*
 ```
 
+Then commit + push to the top-level repo as necessary. 
