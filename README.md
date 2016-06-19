@@ -204,10 +204,12 @@ Don't forget to **import** your project @ the top i.e. `import X._`
 Now go to **src/main/scala/Configs.scala**, and right before `new AddrMap(entries)`, add:
 
 ```
-entries += AddrMapEntry("x", MemSize(2048, MemAttr(AddrMapProt.RW)))
+entries += AddrMapEntry("x", MemSize(16384, MemAttr(AddrMapProt.RW)))
 ```
 
 "x" should be the same as in "int:x". For whatever reason, you can't put peripheral memories as the first of the address map entries. Chisel won't error out, but just don't do it, because your testbench will fail. 
+
+> Note: SMI uses 64 bit longs, whereas **Configs.scala** maps memories in bytes. Therefore, for 2048 longs, you need to allocate 2048*8 bytes. 
 
 Now see if your changes compile + you can run a basic test (this time using the Verilog simulator). 
 
