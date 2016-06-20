@@ -209,7 +209,7 @@ entries += AddrMapEntry("x", MemSize(16384, MemAttr(AddrMapProt.RW)))
 
 "x" should be the same as in "int:x". For whatever reason, you can't put peripheral memories as the first of the address map entries. Chisel won't error out, but just don't do it, because your testbench will fail. 
 
-> Note: SMI uses 64 bit longs, whereas **Configs.scala** maps memories in bytes. Therefore, for 2048 longs, you need to allocate 2048*8 bytes. 
+> Note: SMI uses 64 bit longs, whereas **Configs.scala** maps memories in bytes. Therefore, for 2048 longs, you need to allocate 2048*8 bytes. Also, the memory size should be a **power of 2** (although you don't need to actually make memories to that size in your accelerator), otherwise you'll get compilation errors. Note: You can add a memory size parameter in *Configs.scala*.  
 
 Now see if your changes compile + you can run a basic test (this time using the Verilog simulator). 
 
