@@ -278,6 +278,8 @@ int main( int argc, char* argv[] )
         
 The code's really simple. It just stores (a+1) @ location a and expects to read the same thing back. Note that I test this for all possible address ranges 0-2047. Also, notice that the **base** address corresponds with the generated address map above (otherwise, you will be writing to something else...). Finally,  notice that the program returns 0 if it passes. 
 
+> Note the need for **volatile**. You might actually need to do something like: `volatile long *volatile baseAddr = (long *) MEM_BASE;` to make sure the compiler doesn't optimize out important code (i.e. without *volatile*, it'll think that val = a + 1 always).
+
 Now go back one level to the **benchmarks** directory and `cp vvadd/bmark.mk *name*/.
 `. Note that all benchmark directories must have this Makefile fragment. You'll need to replace the contents of the **bmark.mk** file with the name of your benchmark. 
 
